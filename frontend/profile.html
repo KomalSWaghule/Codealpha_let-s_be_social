@@ -148,7 +148,7 @@
 
     async function fetchUserProfile() {
       try {
-        const resUser = await fetch(`http://localhost:5000/users/${profileUserId}`, {
+        const resUser = await fetch(`https://codealpha-socialmedia.onrender.com/users/${profileUserId}`, {
           headers: { Authorization: "Bearer " + token },
         });
 
@@ -164,14 +164,13 @@
 
         if (!isOwnProfile) {
           followBtn.style.display = "inline-block";
-         const isFollowing = userData.followers.some(f => f._id === loggedInUser.id || f === loggedInUser.id);
-
+          const isFollowing = userData.followers.some(f => f._id === loggedInUser.id || f === loggedInUser.id);
 
           followBtn.textContent = isFollowing ? "❌ Unfollow" : "✔️ Follow";
           followBtn.classList.toggle("unfollow", isFollowing);
 
           followBtn.onclick = async () => {
-            const url = `http://localhost:5000/users/${profileUserId}/${isFollowing ? "unfollow" : "follow"}`;
+            const url = `https://codealpha-socialmedia.onrender.com/users/${profileUserId}/${isFollowing ? "unfollow" : "follow"}`;
 
             try {
               const res = await fetch(url, {
@@ -184,9 +183,7 @@
 
               if (!res.ok) throw new Error("Follow/unfollow failed");
 
-              // Reload profile info again to reflect changes
-              fetchUserProfile();
-
+              fetchUserProfile(); // Refresh
             } catch (err) {
               alert("Failed to update follow status");
               console.error(err);
@@ -194,7 +191,7 @@
           };
         }
 
-        const resPosts = await fetch(`http://localhost:5000/posts/user/${profileUserId}`, {
+        const resPosts = await fetch(`https://codealpha-socialmedia.onrender.com/posts/user/${profileUserId}`, {
           headers: { Authorization: "Bearer " + token },
         });
 
