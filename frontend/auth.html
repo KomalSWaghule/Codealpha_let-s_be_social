@@ -116,7 +116,8 @@
         return;
       }
 
-      const url = isLogin ? "http://localhost:5000/auth/login" : "http://localhost:5000/auth/register";
+      const baseUrl = "https://codealpha-socialmedia.onrender.com";
+      const url = isLogin ? `${baseUrl}/auth/login` : `${baseUrl}/auth/register`;
       const body = isLogin ? { email, password } : { username, email, password };
 
       try {
@@ -142,6 +143,7 @@
         }
       } catch (err) {
         alert("Network error. Please try again later.");
+        console.error("Error:", err);
       }
     }
   </script>
