@@ -5,8 +5,108 @@
   <title>Mini Social Media</title>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <style>
-    /* same styles as before */
-    /* (CSS is unchanged – skipped for brevity) */
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f0f2f5;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      background: white;
+      padding: 20px 30px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-radius: 0 0 12px 12px;
+    }
+    nav h2 {
+      margin: 0;
+      font-weight: 800;
+      font-size: 22px;
+      color: #007bff;
+    }
+    .navtab button {
+      background-color: #007bff;
+      color: white;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      font-weight: 600;
+      cursor: pointer;
+      margin-left: 10px;
+      transition: all 0.2s ease;
+    }
+    .navtab button:hover { background-color: #0056b3; }
+    #feed {
+      padding: 30px 20px;
+      max-width: 700px;
+      margin: auto;
+    }
+    .post {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 25px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.07);
+    }
+    .username { font-weight: 700; color: #333; font-size: 16px; }
+    .content { margin: 12px 0; font-size: 15px; }
+    .likes-comments {
+      font-size: 0.9em;
+      color: #888;
+      margin-bottom: 10px;
+    }
+    .post button {
+      padding: 8px 14px;
+      margin-right: 10px;
+      font-weight: 600;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+    .like-btn { background: #e7f1ff; color: #007bff; }
+    .like-btn:hover { background: #cfe4ff; }
+    .comment-btn { background: #e3fcec; color: #28a745; }
+    .comment-btn:hover { background: #b2f5c5; }
+    .delete-btn { background: #f8d7da; color: #dc3545; }
+    .delete-btn:hover { background: #f1b0b7; }
+    .view-profile-btn { background: #f3e8ff; color: #6f42c1; }
+    .view-profile-btn:hover { background: #e0c9ff; }
+    .comment-section {
+      margin-top: 15px;
+      border-top: 1px solid #eee;
+      padding-top: 10px;
+    }
+    .comment {
+      font-size: 14px;
+      margin-top: 6px;
+    }
+    input[type="text"] {
+      width: 75%;
+      padding: 8px;
+      margin-top: 8px;
+      margin-bottom: 8px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+    .edit-btn {
+      background-color: #fff3cd;
+      color: #856404;
+      margin-left: 8px;
+      border: none;
+      border-radius: 5px;
+      padding: 2px 8px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    @media (max-width: 600px) {
+      .navtab { flex-direction: column; gap: 10px; }
+      input[type="text"] { width: 100%; }
+    }
   </style>
 </head>
 <body>
