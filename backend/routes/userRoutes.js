@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/User');  // Adjust the path accordingly
+const User = require('../models/User');  
 const Post = require('../models/Post');
 
 const { getUserProfile, followUser, unfollowUser } = require('../controllers/userController');
