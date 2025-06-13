@@ -1,4 +1,4 @@
-// seed.js
+
 const mongoose = require("mongoose");
 require("dotenv").config();
 
@@ -15,14 +15,14 @@ async function seed() {
     await Post.deleteMany({});
     await Comment.deleteMany({});
 
-    // Create users
+
     const users = await User.insertMany([
       { username: "alice", email: "alice@example.com", password: "hashed_password" },
       { username: "bob", email: "bob@example.com", password: "hashed_password" },
       { username: "charlie", email: "charlie@example.com", password: "hashed_password" },
     ]);
 
-    // Create posts
+ 
     const posts = await Post.insertMany([
       {
         userId: users[0]._id,
@@ -38,7 +38,7 @@ async function seed() {
       }
     ]);
 
-    // Create comments
+
     const comments = await Comment.insertMany([
       {
         postId: posts[0]._id,
@@ -52,7 +52,7 @@ async function seed() {
       }
     ]);
 
-    // Link comments to posts
+
     posts[0].comments.push(comments[0]._id);
     posts[1].comments.push(comments[1]._id);
     await posts[0].save();
