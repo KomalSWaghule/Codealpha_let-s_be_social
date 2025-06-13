@@ -1,5 +1,5 @@
 const Comment = require('../models/Comment');
-const User = require('../models/User');  // Adjust the path accordingly
+const User = require('../models/User');  
 const Post = require('../models/Post');
 
 
@@ -20,7 +20,7 @@ exports.addComment = async (req, res) => {
 
 
 
-// ...addComment, getComments already exist
+
 
 exports.updateComment = async (req, res) => {
   const { commentId } = req.params;
@@ -32,7 +32,6 @@ exports.updateComment = async (req, res) => {
 
     if (!comment) return res.status(404).json({ message: "Comment not found" });
 
-    // Ensure the user owns the comment
     if (comment.userId.toString() !== userId) {
       return res.status(403).json({ message: "Not authorized to edit this comment" });
     }
