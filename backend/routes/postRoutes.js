@@ -7,9 +7,6 @@ const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 
-// ============================
-// Multer config for image uploads
-// ============================
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
     const dir = "uploads/";
@@ -22,7 +19,8 @@ const storage = multer.diskStorage({
     const uniqueName = Date.now() + "-" + file.originalname.replace(/\s+/g, '_');
     cb(null, uniqueName);
   },
-});
+}
+);
 
 const upload = multer({
   storage,
@@ -33,11 +31,10 @@ const upload = multer({
     if (allowed.includes(ext)) cb(null, true);
     else cb(new Error("Only images are allowed (jpg, jpeg, png, gif)"));
   }
-});
+}
+  );
 
-// ============================
-// GET all posts (public)
-// ============================
+
 router.get("/", async (req, res) => {
   try {
     const posts = await Post.find()
@@ -48,11 +45,10 @@ router.get("/", async (req, res) => {
     console.error("Error fetching posts:", err);
     res.status(500).json({ message: "Server error", error: err.message });
   }
-});
+}
+    );
 
-// ============================
-// POST create new post (protected)
-// ============================
+
 router.post("/", authMiddleware, upload.single("image"), async (req, res) => {
   const { content } = req.body;
 
@@ -76,11 +72,10 @@ router.post("/", authMiddleware, upload.single("image"), async (req, res) => {
     console.error("Error saving post:", err);
     res.status(500).json({ message: "Server error" });
   }
-});
+}
+);
 
-// ============================
-// POST like/unlike a post (protected)
-// ============================
+
 router.post("/:id/like", authMiddleware, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -102,11 +97,10 @@ router.post("/:id/like", authMiddleware, async (req, res) => {
     console.error("Error liking post:", err);
     res.status(500).json({ message: "Server error", error: err.message });
   }
-});
+}
+  );
 
-// ============================
-// GET posts by user ID (protected)
-// ============================
+
 router.get("/user/:id", authMiddleware, async (req, res) => {
   try {
     const posts = await Post.find({ userId: req.params.id }).sort({ createdAt: -1 });
@@ -115,11 +109,9 @@ router.get("/user/:id", authMiddleware, async (req, res) => {
     console.error("Error fetching user posts:", err);
     res.status(500).json({ message: "Server error" });
   }
-});
+}   
+  );
 
-// ============================
-// DELETE a post by ID (protected)
-// ============================
 router.delete("/:id", authMiddleware, async (req, res) => {
   try {
     const post = await Post.findById(req.params.id);
@@ -146,6 +138,7 @@ router.delete("/:id", authMiddleware, async (req, res) => {
     console.error("Error deleting post:", err);
     res.status(500).json({ message: "Server error" });
   }
-});
+}
+);
 
 module.exports = router;
