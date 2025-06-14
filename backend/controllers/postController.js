@@ -14,7 +14,7 @@ exports.createPost = async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 };
-// Get posts by user ID
+
 exports.getPostsByUser = async (req, res) => {
   try {
     const userId = req.params.id;
