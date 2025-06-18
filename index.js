@@ -19,7 +19,7 @@ app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 
 mongoose
-  .connect(process.env.MONGO_URI || "mongodb+srv://komalwaghule05:Komal11062005@cluster0.pmivpsb.mongodb.net/social_media?retryWrites=true&w=majority&appName=Cluster0", {
+  .connect(process.env.MONGO_URI , {
     useNewUrlParser: true,
     useUnifiedTopology: true
   })
