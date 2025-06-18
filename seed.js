@@ -8,7 +8,7 @@ const Comment = require("./backend/models/Comment");
 
 async function seed() {
   try {
-    await mongoose.connect(process.env.MONGO_URI || "mongodb+srv://komalwaghule05:Komal11062005@cluster0.pmivpsb.mongodb.net/social_media?retryWrites=true&w=majority&appName=Cluster0");
+    await mongoose.connect(process.env.MONGO_URI );
 
     // Clear existing data
     await User.deleteMany({});
